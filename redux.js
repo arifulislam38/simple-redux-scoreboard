@@ -116,6 +116,5 @@ id='decrement-${quantity}'
 <h2 id="value-${quantity}" class="lws-singleResult value">${count}</h2>
 </div>
 `;
-
   store.dispatch({ type: "addMatch", payload: match });
 });
