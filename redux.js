@@ -49,4 +49,24 @@ store.subscribe(render);
 render();
 
 //event trigger
+function increment(e) {
+  const id = e.id.split("-")[1];
+  const value = document.getElementById(`value-${id}`);
+  value.innerText = parseInt(value.innerText) + parseInt(e.value);
+  const incrementValue = document.getElementById(`increment-${id}`);
+  incrementValue.value = "";
+}
+
+function decrement(e) {
+  const id = e.id.split("-")[1];
+  const value = document.getElementById(`value-${id}`);
+  let decValue = parseInt(value.innerText) - parseInt(e.value);
+  if (decValue < 0) {
+    decValue = 0;
+  }
+  value.innerText = decValue;
+  const decrementValue = document.getElementById(`decrement-${id}`);
+  decrementValue.value = "";
+}
+
 
