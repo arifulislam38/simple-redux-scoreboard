@@ -69,4 +69,53 @@ function decrement(e) {
   decrementValue.value = "";
 }
 
+function deleteHandler(id) {
+  store.dispatch({ type: 'deleteMatch', payload: id });
+}
 
+resetBtn.addEventListener("click", () => {
+  for (let i = 0; i < innerValue.length; i++) {
+    const totalValue = innerValue[i];
+    totalValue.innerText = 0;
+  }
+});
+
+matchBtn.addEventListener("click", () => {
+  const state = store.getState();
+  quantity = state.newMatch.length + 2;
+  const match = `
+<div class="wrapper">
+<button  class="lws-delete">
+<img src="./image/delete.svg" alt="" />
+</button>
+<h3 class="lws-matchName ">Match ${quantity}</h3>
+</div>
+<div class="inc-dec">
+<div class="incrementForm">
+<h4>Increment</h4>
+<input
+onchange='increment(this)'
+  id='increment-${quantity}'
+  type="number"
+  name='increment'
+  class="lws-increment increment"
+/>
+</div>
+<div class="decrementForm">
+<h4>Decrement</h4>
+<input
+onchange='decrement(this)'
+id='decrement-${quantity}'
+  type="number"
+  name='decrement'
+  class="lws-decrement"
+/>
+</div>
+</div>
+<div class="numbers">
+<h2 id="value-${quantity}" class="lws-singleResult value">${count}</h2>
+</div>
+`;
+
+  store.dispatch({ type: "addMatch", payload: match });
+});
